@@ -3,6 +3,8 @@ package com.example.quizapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     String []root={"g","j","p","q","y"};
     String []sky={"b","d","f","h","k","l","t"};
     int letterType;
+    TextView txtView= (TextView) findViewById(R.id.textViewWord);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         // selecting a random number
         Random random=new Random();
         letterType=random.nextInt(3);
-        TextView txtView= (TextView) findViewById(R.id.textViewWord);
+
         if(letterType==0){
             txtView.setText(grass[random.nextInt(14)]);
         }
@@ -32,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
         }
         if(letterType==2){
             txtView.setText(sky[random.nextInt(7)]);
+        }
+    }
+
+    public void buttonClicked(View v){
+        int[] btns={R.id.btnGrass,R.id.btnRoot,R.id.btnSky};
+        if(btns[v.getId()]==letterType){
+            txtView.setText("Congrats Answer");
+        }
+        else{
+            txtView.setText("Wrong Answer");
         }
     }
 
